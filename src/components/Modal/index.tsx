@@ -11,113 +11,124 @@ export function TransactionModal({
   onClose,
   onAddTransaction,
 }: TransactionModalProps) {
-  const [name, setName] = useState<string>('');
-  const [date, setDate] = useState<string>('');
-  const [category, setCategory] = useState<string>('');
-  const [amount, setAmount] = useState<number>(0);
+  const [name, setName] = useState('');
+  const [date, setDate] = useState('');
+  const [category, setCategory] = useState('');
+  const [amount, setAmount] = useState(0);
   const [type, setType] = useState<'+' | '-'>('-');
 
-  const handleAddTransaction = () => {
-    const newTransaction: Transaction = {
-      name,
-      date,
-      category,
-      amount,
-      type,
-    };
-    onAddTransaction(newTransaction);
-
+  const resetForm = () => {
     setName('');
     setDate('');
     setCategory('');
     setAmount(0);
     setType('+');
   };
+
+  const handleAddTransaction = () => {
+    const newTransaction: Transaction = { name, date, category, amount, type };
+    onAddTransaction(newTransaction);
+    resetForm();
+  };
+
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modal}>
         <h2 className={styles.modalTitle}>Nova transação</h2>
-        <div className={styles.form}>
-          <label className={styles.normalInput}>Nome</label>
+
+        <form
+          className={styles.form}
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleAddTransaction();
+          }}
+        >
+          <label htmlFor="name" className={styles.normalInput}>
+            Nome
+          </label>
           <input
+            id="name"
             className={styles.text}
             type="text"
             placeholder="Digite o nome da sua transação"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-          <label className={styles.normalInput}>Data</label>
+
+          <label htmlFor="date" className={styles.normalInput}>
+            Data
+          </label>
           <input
+            id="date"
             className={styles.text}
-            type="text"
-            placeholder="Selecione a data da transação"
+            type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
           />
-          <label className={styles.normalInput}>Categoria</label>
+
+          <label htmlFor="category" className={styles.normalInput}>
+            Categoria
+          </label>
           <input
+            id="category"
             className={styles.text}
             type="text"
             placeholder="Categoria"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
           />
-          <label className={styles.normalInput}>Valor</label>
+
+          <label htmlFor="amount" className={styles.normalInput}>
+            Valor
+          </label>
           <input
+            id="amount"
             className={styles.text}
             type="number"
             placeholder="Valor"
             value={amount}
-            onChange={(e) => setAmount(parseFloat(e.target.value))}
+            onChange={(e) => setAmount(Number(e.target.value) || 0)}
           />
-          <label>Tipo</label>
-          <div className={styles.radioLabel}>
+
+          <fieldset className={styles.radioGroup}>
+            <legend>Tipo</legend>
             <label className={styles.radioButton}>
               <input
-                className={styles.expense}
                 type="radio"
                 value="+"
                 checked={type === '+'}
                 onChange={() => setType('+')}
               />
-              <img src={up} alt="Expense Icon" className={styles.radioIcon} />
+              <img src={up} alt="Entrada" className={styles.radioIcon} />
               Entrada
             </label>
-            <div className={styles.radioLabel}>
-              <label className={styles.radioButton}>
-                <input
-                  className={styles.income}
-                  type="radio"
-                  value="-"
-                  checked={type === '-'}
-                  onChange={() => setType('-')}
-                />
-                <img
-                  src={down}
-                  alt="Income Icon"
-                  className={styles.radioIcon}
-                />
-                Saída
-              </label>
-            </div>
+
+            <label className={styles.radioButton}>
+              <input
+                type="radio"
+                value="-"
+                checked={type === '-'}
+                onChange={() => setType('-')}
+              />
+              <img src={down} alt="Saída" className={styles.radioIcon} />
+              Saída
+            </label>
+          </fieldset>
+
+          <div className={styles.buttons}>
+            <button
+              type="button"
+              className={`${styles.cancel} ${styles.btn}`}
+              onClick={onClose}
+            >
+              <img src={cancel} alt="Cancelar" /> Cancelar
+            </button>
+
+            <button type="submit" className={`${styles.add} ${styles.btn}`}>
+              <img src={add} alt="Adicionar" /> Adicionar
+            </button>
           </div>
-        </div>
-        <div className={styles.buttons}>
-          <button
-            className={`${styles.cancel} ${styles.btn}`}
-            onClick={onClose}
-          >
-            {' '}
-            <img src={cancel}></img>Cancelar
-          </button>
-          <button
-            className={`${styles.add} ${styles.btn}`}
-            onClick={handleAddTransaction}
-          >
-            {' '}
-            <img src={add}></img>Adicionar
-          </button>
-        </div>
+        </form>
       </div>
     </div>
   );
