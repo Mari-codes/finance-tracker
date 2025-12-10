@@ -1,3 +1,5 @@
+import { formatCurrency } from '../../utils/formatCurrency';
+import { formatDate } from '../../utils/formatDate';
 import styles from './TransactionHistory.module.css';
 import type { TransactionHistoryTableProps } from './TransactionHistory.types';
 
@@ -11,31 +13,26 @@ export function TransactionHistory({
         <table>
           <thead>
             <tr>
-              <th>Nome</th>
-              <th>Data</th>
-              <th>Categoria</th>
-              <th>Valor</th>
-              <th>Tipo</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Data</th>
+              <th scope="col">Categoria</th>
+              <th scope="col">Valor</th>
+              <th scope="col">Tipo</th>
             </tr>
           </thead>
           <tbody>
-            {transactions.map((transaction, index) => (
-              <tr key={index}>
+            {transactions.map((transaction) => (
+              <tr key={`${transaction.name}-${transaction.date}`}>
                 <td>{transaction.name}</td>
-                <td>{transaction.date}</td>
+                <td>{formatDate(transaction.date)}</td>
                 <td>{transaction.category}</td>
-                <td>
-                  {transaction.amount.toLocaleString('pt-BR', {
-                    style: 'currency',
-                    currency: 'BRL',
-                  })}
-                </td>
+                <td>{formatCurrency(transaction.amount)}</td>
                 <td
                   className={
                     transaction.type === '+' ? styles.positive : styles.negative
                   }
                 >
-                  {transaction.type}
+                  {transaction.type === '+' ? '+' : '-'}
                 </td>
               </tr>
             ))}
