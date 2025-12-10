@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { Card } from '../Card';
 import up from '../../assets/svg/up.svg';
 import down from '../../assets/svg/down.svg';
@@ -7,6 +7,7 @@ import type { Transaction } from '../../types/transaction';
 import { TransactionButton } from '../TransactionButton';
 import { TransactionModal } from '../Modal';
 import { TransactionHistory } from '../TransactionHistory';
+import { useTotals } from '../../hooks/useTotals';
 
 export function Dashboard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -34,41 +35,33 @@ export function Dashboard() {
     },
   ]);
 
-  const addTransaction = (transaction: Transaction) => {
-    setTransactions([...transactions, transaction]);
-    closeModal();
-  };
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
+  const addTransaction = useCallback((transaction: Transaction) => {
+    setTransactions(prev => [...prev, transaction]);
     setIsModalOpen(false);
-  };
+  }, []);
 
-  const calculateTotal = (type: '+' | '-') => {
-    return transactions
-      .filter((transaction) => transaction.type === type)
-      .reduce((total, transaction) => total + transaction.amount, 0);
-  };
+  const { entradas, saidas, saldo } = useTotals(transactions);
 
-  const totalEntradas = calculateTotal('+');
-  const totalSaidas = calculateTotal('-');
-  const saldo = totalEntradas - totalSaidas;
+  const cards = [
+    { svg: up, title: 'Entradas', value: entradas },
+    { svg: down, title: 'Saídas', value: saidas },
+    { symbol: '$', title: 'Saldo', value: saldo },
+  ];
 
   return (
     <div className={styles.dashboard}>
       <div className={styles.cardContainer}>
-        <Card svg={up} title="Entradas" value={totalEntradas} />
-        <Card svg={down} title="Saídas" value={totalSaidas} />
-        <Card symbol="$" title="Saldo" value={saldo} />
-        <TransactionButton onClick={openModal} />
+        {cards.map((c, i) => (
+          <Card key={i} {...c} />
+        ))}
+        <TransactionButton onClick={() => setIsModalOpen(true)} />
       </div>
+
       <TransactionHistory transactions={transactions} />
+
       {isModalOpen && (
         <TransactionModal
-          onClose={closeModal}
+          onClose={() => setIsModalOpen(false)}
           onAddTransaction={addTransaction}
           transactions={transactions}
         />
