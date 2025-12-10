@@ -46,6 +46,10 @@
 .cardPrice {
   font-family: 'Inter', sans-serif;
   font-size: 29px;
+  max-width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .centavos {

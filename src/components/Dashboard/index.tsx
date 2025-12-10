@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback } from 'react';
 import { Card } from '../Card';
 import up from '../../assets/svg/up.svg';
 import down from '../../assets/svg/down.svg';
@@ -36,7 +36,7 @@ export function Dashboard() {
   ]);
 
   const addTransaction = useCallback((transaction: Transaction) => {
-    setTransactions(prev => [...prev, transaction]);
+    setTransactions((prev) => [...prev, transaction]);
     setIsModalOpen(false);
   }, []);
 
