@@ -1,0 +1,46 @@
+.header {
+  background-color: #1e3a8a;
+  width: 100%;
+  display: flex;
+  padding: 20px 120px;
+  justify-content: space-between;
+  color: #eff6ff;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo > img {
+  color: #f1f5f9;
+}
+
+.logo h1 {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.details h2 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.details p {
+  font-size: 14px;
+  font-weight: 400;
+}
