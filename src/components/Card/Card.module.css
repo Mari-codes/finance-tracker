@@ -1,0 +1,54 @@
+.card {
+  padding: 27px 30px 13px 27px;
+  flex: 1;
+  min-width: 270px;
+  max-width: 100%;
+  height: auto;
+  background-color: #f8fafc;
+  border: 1px solid #cbd5e1;
+  box-shadow: 5px 15px 30px -5px #dce0ec;
+  border-radius: 11px;
+}
+
+.cardValue {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 13px;
+}
+
+.symbol {
+  color: #1e3a8a;
+  background-color: #dbeafe;
+  font-size: 20px;
+  font-weight: 800;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+}
+
+.cardTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+}
+
+.cardIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+}
+
+.cardPrice {
+  font-family: 'Inter', sans-serif;
+  font-size: 29px;
+}
+
+.centavos {
+  font-family: 'Inter', sans-serif;
+  font-size: 19px;
+}
