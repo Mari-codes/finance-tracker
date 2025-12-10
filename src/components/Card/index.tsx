@@ -3,7 +3,6 @@ import styles from './Card.module.css';
 import type { CardProps } from './Card.types';
 
 export function Card({ svg, title, value, symbol }: CardProps) {
-
   return (
     <div className={styles.card}>
       <div className={styles.cardValue}>
