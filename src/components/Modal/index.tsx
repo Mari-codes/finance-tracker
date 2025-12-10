@@ -16,6 +16,7 @@ export function TransactionModal({
   const [category, setCategory] = useState('');
   const [amount, setAmount] = useState(0);
   const [type, setType] = useState<'+' | '-'>('-');
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   const resetForm = () => {
     setName('');
@@ -23,9 +24,25 @@ export function TransactionModal({
     setCategory('');
     setAmount(0);
     setType('+');
+    setErrors({});
+  };
+
+  const validateForm = () => {
+    const newErrors: { [key: string]: string } = {};
+    if (name.trim() === '') newErrors.name = 'Nome é obrigatório';
+    if (date.trim() === '') newErrors.date = 'Data é obrigatória';
+    if (category.trim() === '') newErrors.category = 'Categoria é obrigatória';
+    if (amount <= 0) newErrors.amount = 'Informe um valor maior que zero';
+    return newErrors;
   };
 
   const handleAddTransaction = () => {
+    const validationErrors = validateForm();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
     const newTransaction: Transaction = { name, date, category, amount, type };
     onAddTransaction(newTransaction);
     resetForm();
@@ -54,6 +71,7 @@ export function TransactionModal({
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
+          {errors.name && <span className={styles.error}>{errors.name}</span>}
 
           <label htmlFor="date" className={styles.normalInput}>
             Data
@@ -65,6 +83,7 @@ export function TransactionModal({
             value={date}
             onChange={(e) => setDate(e.target.value)}
           />
+          {errors.date && <span className={styles.error}>{errors.date}</span>}
 
           <label htmlFor="category" className={styles.normalInput}>
             Categoria
@@ -77,6 +96,9 @@ export function TransactionModal({
             value={category}
             onChange={(e) => setCategory(e.target.value)}
           />
+          {errors.category && (
+            <span className={styles.error}>{errors.category}</span>
+          )}
 
           <label htmlFor="amount" className={styles.normalInput}>
             Valor
@@ -89,6 +111,9 @@ export function TransactionModal({
             value={amount}
             onChange={(e) => setAmount(Number(e.target.value) || 0)}
           />
+          {errors.amount && (
+            <span className={styles.error}>{errors.amount}</span>
+          )}
 
           <fieldset className={styles.radioGroup}>
             <legend>Tipo</legend>
