@@ -47,3 +47,47 @@ td {
   color: #dc2626;
   font-weight: 700;
 }
+
+@media (max-width: 723px) {
+  .tableTransaction th,
+  .tableTransaction td {
+    padding: 6px;
+    font-size: 12px;
+  }
+
+  .tableTransaction h2 {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 692px) {
+  .tableTransaction {
+    padding: 0px 20px;
+  }
+}
+
+@media (max-width: 469px) {
+  .tableTransaction {
+    padding: 0px;
+    border-radius: 0;
+  }
+
+  .transactionHistory {
+    border-radius: 0;
+  }
+}
+
+@media (max-width: 465px) {
+  .transactionHistory {
+    padding: 5px;
+  }
+
+  .tableTransaction th,
+  .tableTransaction td {
+    font-size: 10px;
+  }
+
+  .tableTransaction h2 {
+    font-size: 14px;
+  }
+}

@@ -44,3 +44,55 @@
   font-size: 14px;
   font-weight: 400;
 }
+
+@media (max-width: 1170px) {
+  .logo h1 {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 723px) {
+  .logo h1 {
+    font-size: 18px;
+  }
+
+  .logo > img {
+    width: 40px;
+  }
+}
+
+@media (max-width: 692px) {
+  .header {
+    padding: 20px 20px;
+  }
+}
+
+@media (max-width: 465px) {
+  .header {
+    padding: 12px 10px;
+  }
+
+  .logo h1 {
+    font-size: 15px;
+  }
+
+  .user {
+    gap: 10px;
+  }
+  .details h2 {
+    font-size: 12px;
+  }
+
+  .details p {
+    font-size: 10px;
+  }
+  .logo {
+    gap: 2px;
+  }
+  .logo > img {
+    width: 30px;
+  }
+  .userImg {
+    width: 30px;
+  }
+}
