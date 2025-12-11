@@ -1,5 +1,5 @@
 import Credit from '../../assets/svg/credit.svg';
-import UserImg from '../../assets/svg/userImg.svg';
+import UserImg from '../../assets/images/userImg.png';
 import styles from './Header.module.css';
 import type { HeaderProps } from './Header.types';
 

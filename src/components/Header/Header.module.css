@@ -28,6 +28,11 @@
   gap: 16px;
 }
 
+.userImg {
+  width: 60px;
+  height: auto;
+}
+
 .details {
   display: flex;
   flex-direction: column;
