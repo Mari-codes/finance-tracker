@@ -88,12 +88,12 @@ yarn dev
 
 ### Página principal (Finance Tracker)
 
-![Página Finance Tracker](./src/assets/screenshots/finance-tracker.png)
+![Página Finance Tracker](/src/assets/screenshots/finance-tracker.png)
 
 ### Modal de transação
 
-![Modal de Transação](./src/assets/screenshots/finance-tracker-modal.png)
+![Modal de Transação](/src/assets/screenshots/finance-tracker-modal.png)
 
 ### Modal com erros de validação (campos obrigatórios não preenchidos)
 
-![Modal com Erros de Validação](./src/assets/screenshots/finance-tracker-modal-validation.png)
+![Modal com Erros de Validação](/src/assets/screenshots/finance-tracker-modal-validation.png)
