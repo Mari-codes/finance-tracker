@@ -37,3 +37,63 @@ O projeto utiliza uma estrutura limpa, um hook personalizado para cálculos de t
 - Pasta `hooks` para lógica compartilhada
 - Pasta `types` para modelos de domínio
 - Formatação de código com Prettier
+- **Validações no modal: só é possível adicionar uma transação quando todos os campos obrigatórios estão preenchidos**
+
+---
+
+## Primeiros Passos
+
+### Pré-requisitos
+
+- Node.js (>= 14.x)
+- npm ou yarn
+
+### Instalação
+
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/seu-usuario/devfinder.git
+   ```
+2. Navegue até a pasta do projeto:
+   ```bash
+   cd devfinder
+   ```
+3. Instale as dependências:
+
+   ```bash
+   npm install
+   ```
+
+   ou
+
+   ```bash
+   yarn install
+   ```
+
+## Executando o Projeto
+
+```sh
+npm run dev
+```
+
+ou
+
+```bash
+yarn dev
+```
+
+---
+
+## Capturas de tela
+
+### Página principal (Finance Tracker)
+
+![Página Finance Tracker](./src/assets/screenshots/finance-tracker.png)
+
+### Modal de transação
+
+![Modal de Transação](./src/assets/screenshots/finance-tracker-modal.png)
+
+### Modal com erros de validação (campos obrigatórios não preenchidos)
+
+![Modal com Erros de Validação](./src/assets/screenshots/finance-tracker-modal-validation.png)
